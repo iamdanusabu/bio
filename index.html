@@ -678,17 +678,6 @@
         .scroll-to-top:hover svg {
             transform: translateY(-3px);
         }
-
-        @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        #typing-text::after {
-            content: '|';
-            animation: blink 0.7s infinite;
-        }
     </style>
 </head>
 <body>
@@ -925,27 +914,113 @@
     </section>
 
     <!-- Updated intro card -->
-    <section id="pm-tools-intro" class="py-5">
+    <section id="pm-tools-intro" class="py-5 d-flex align-items-center justify-content-center" style="min-height: 50vh;">
         <div class="container">
-            <h2 class="section-title text-center mb-4">Explore PM Tools</h2>
-            <div class="card">
-                <div class="card-body">
-                    <p class="card-text" id="pm-tools-question">Would you like to explore Product Management tools?</p>
-                    <div id="pm-tools-options" class="text-center">
-                        <button class="btn btn-primary me-2" id="show-pm-tools">Yes, show me</button>
-                        <button class="btn btn-secondary" id="hide-pm-tools">No, thanks</button>
-                    </div>
-                    <div id="pm-tools-content" class="mt-4 d-none">
-                        <p id="typing-text"></p>
-                        <div id="tool-buttons" class="mt-3 d-none">
-                            <button class="btn btn-outline-primary me-2" data-tool="roadmap">Roadmap Tools</button>
-                            <button class="btn btn-outline-primary me-2" data-tool="user-stories">User Story Tools</button>
-                            <button class="btn btn-outline-primary" data-tool="prioritization">Prioritization Tools</button>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body text-center">
+                            <h3 class="card-title mb-4">Explore PM Tools</h3>
+                            <p class="card-text mb-4">Would you like to see some common Product Management tools?</p>
+                            <button id="revealPMTools" class="btn btn-primary">Yes, show me</button>
                         </div>
-                        <div id="tool-description" class="mt-3"></div>
-                        <button id="explore-other" class="btn btn-link mt-3 d-none">Explore other features</button>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Updated PM tools section -->
+    <section id="product-manager-tools" class="py-5 bg-light d-none">
+        <div class="container">
+            <h2 class="text-center mb-5">Product Manager's Toolkit</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0 text-white">Feature Prioritization</h5>
+                        </div>
+                        <div class="card-body">
+                            <form id="featurePrioritizationForm">
+                                <div class="mb-3">
+                                    <label for="featureName" class="form-label">Feature Name</label>
+                                    <input type="text" class="form-control" id="featureName" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="impact" class="form-label">Impact (1-10)</label>
+                                    <input type="number" class="form-control" id="impact" min="1" max="10" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="effort" class="form-label">Effort (1-10)</label>
+                                    <input type="number" class="form-control" id="effort" min="1" max="10" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Add Feature</button>
+                            </form>
+                            <div class="mt-4">
+                                <h6>Prioritized Features</h6>
+                                <ul id="prioritizedFeatures" class="list-group list-group-flush">
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0 text-white">User Story Creator</h5>
+                        </div>
+                        <div class="card-body">
+                            <form id="userStoryForm">
+                                <div class="mb-3">
+                                    <label for="userType" class="form-label">As a</label>
+                                    <input type="text" class="form-control" id="userType" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="userWant" class="form-label">I want to</label>
+                                    <input type="text" class="form-control" id="userWant" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="userBenefit" class="form-label">So that</label>
+                                    <input type="text" class="form-control" id="userBenefit" required>
+                                </div>
+                                <button type="submit" class="btn btn-success">Create User Story</button>
+                            </form>
+                            <div class="mt-4">
+                                <h6>User Stories</h6>
+                                <ul id="userStories" class="list-group list-group-flush">
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0 text-white">Simple Roadmap</h5>
+                        </div>
+                        <div class="card-body">
+                            <form id="roadmapForm">
+                                <div class="mb-3">
+                                    <label for="milestone" class="form-label">Milestone</label>
+                                    <input type="text" class="form-control" id="milestone" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="dueDate" class="form-label">Due Date</label>
+                                    <input type="date" class="form-control" id="dueDate" required>
+                                </div>
+                                <button type="submit" class="btn btn-info">Add Milestone</button>
+                            </form>
+                            <div class="mt-4">
+                                <h6>Roadmap</h6>
+                                <ul id="roadmapMilestones" class="list-group list-group-flush">
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <button id="hidePMTools" class="btn btn-secondary">Hide PM Tools</button>
             </div>
         </div>
     </section>
@@ -1129,64 +1204,32 @@
             });
         }
 
-        // PM Tools Exploration
-        const showPMToolsBtn = document.getElementById('show-pm-tools');
-        const hidePMToolsBtn = document.getElementById('hide-pm-tools');
-        const pmToolsContent = document.getElementById('pm-tools-content');
-        const typingText = document.getElementById('typing-text');
-        const toolButtons = document.getElementById('tool-buttons');
-        const toolDescription = document.getElementById('tool-description');
-        const exploreOtherBtn = document.getElementById('explore-other');
+        // PM Tools Reveal and Hide
+        const revealPMToolsBtn = document.getElementById('revealPMTools');
+        const hidePMToolsBtn = document.getElementById('hidePMTools');
+        const pmToolsSection = document.getElementById('product-manager-tools');
+        const pmToolsIntro = document.getElementById('pm-tools-intro');
 
-        const toolDescriptions = {
-            roadmap: "Roadmap tools help visualize product strategy and timeline.",
-            "user-stories": "User story tools assist in capturing customer requirements effectively.",
-            prioritization: "Prioritization tools aid in deciding which features to build first."
-        };
+        revealPMToolsBtn.addEventListener('click', () => {
+            pmToolsIntro.classList.add('hidden');
+            pmToolsSection.classList.remove('d-none');
+            setTimeout(() => {
+                pmToolsSection.classList.add('show');
+            }, 50);
 
-        function typeText(text, element, callback) {
-            let index = 0;
-            element.textContent = '';
-            function type() {
-                if (index < text.length) {
-                    element.textContent += text.charAt(index);
-                    index++;
-                    setTimeout(type, 50);
-                } else if (callback) {
-                    callback();
-                }
-            }
-            type();
-        }
-
-        showPMToolsBtn.addEventListener('click', () => {
-            pmToolsContent.classList.remove('d-none');
-            typeText("Which PM tool would you like to explore?", typingText, () => {
-                toolButtons.classList.remove('d-none');
-            });
+            // Scroll to the PM tools section
+            pmToolsSection.scrollIntoView({ behavior: 'smooth' });
         });
 
         hidePMToolsBtn.addEventListener('click', () => {
-            pmToolsContent.classList.add('d-none');
-            toolButtons.classList.add('d-none');
-            exploreOtherBtn.classList.add('d-none');
-            toolDescription.textContent = '';
-        });
+            pmToolsSection.classList.remove('show');
+            setTimeout(() => {
+                pmToolsSection.classList.add('d-none');
+                pmToolsIntro.classList.remove('hidden');
+            }, 500);
 
-        toolButtons.addEventListener('click', (e) => {
-            if (e.target.tagName === 'BUTTON') {
-                const tool = e.target.dataset.tool;
-                typeText(toolDescriptions[tool], toolDescription, () => {
-                    exploreOtherBtn.classList.remove('d-none');
-                });
-            }
-        });
-
-        exploreOtherBtn.addEventListener('click', () => {
-            toolDescription.textContent = '';
-            typeText("Which other PM tool would you like to explore?", typingText, () => {
-                toolButtons.classList.remove('d-none');
-            });
+            // Scroll back to the intro card
+            pmToolsIntro.scrollIntoView({ behavior: 'smooth' });
         });
 
         // Scroll to Top functionality
