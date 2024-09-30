@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary-color: #3B82F6;
@@ -688,6 +689,62 @@
         .scroll-to-top:hover svg {
             transform: translateY(-3px);
         }
+
+        .achievements-section {
+            background-color: #f8f8f8;
+        }
+
+        .achievements-list {
+            list-style-type: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .achievement-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .achievement-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .achievement-icon {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f0f0;
+            border-radius: 50%;
+            color: #333;
+        }
+
+        .achievement-text {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        @keyframes highlight {
+            0% { background-color: #ffffff; }
+            50% { background-color: #fffacd; }
+            100% { background-color: #ffffff; }
+        }
+
+        .achievement-highlight {
+            animation: highlight 1s ease;
+        }
     </style>
 </head>
 <body>
@@ -778,6 +835,26 @@
             </div>
         </div>
     </section>
+    <section id="achievements" class="section achievements-section">
+      <div class="container">
+        <h2 class="section-title">Notable Achievements</h2>
+        <ul class="achievements-list">
+          <li class="achievement-item">
+            <span class="achievement-icon"><i class="fas fa-trophy"></i></span>
+            <p class="achievement-text">Won first place in the 2023 Hackathon</p>
+          </li>
+          <li class="achievement-item">
+            <span class="achievement-icon"><i class="fas fa-book"></i></span>
+            <p class="achievement-text">Published a research paper on AI ethics</p>
+          </li>
+          <li class="achievement-item">
+            <span class="achievement-icon"><i class="fas fa-rocket"></i></span>
+            <p class="achievement-text">Led a team of 5 in developing a successful startup MVP</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+ 
     <section id="experience" class="py-5">
         <div class="container">
             <h2 class="text-center mb-5">Professional Experience</h2>
@@ -1273,6 +1350,26 @@
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
+            });
+        });
+
+        // Achievements section interactions
+        const achievementItems = document.querySelectorAll('.achievement-item');
+        
+        achievementItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                item.style.backgroundColor = '#f0f0f0';
+            });
+            
+            item.addEventListener('mouseleave', () => {
+                item.style.backgroundColor = '#ffffff';
+            });
+            
+            item.addEventListener('click', () => {
+                item.classList.add('achievement-highlight');
+                setTimeout(() => {
+                    item.classList.remove('achievement-highlight');
+                }, 1000);
             });
         });
     </script>
