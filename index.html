@@ -120,14 +120,14 @@
             position: relative;
             max-width: 1000px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 40px 0;
         }
 
         .timeline::after {
             content: '';
             position: absolute;
             width: 2px;
-            background-color: #e0e0e0;
+            background: #e0e0e0;
             top: 0;
             bottom: 0;
             left: 50%;
@@ -139,7 +139,6 @@
             position: relative;
             background-color: inherit;
             width: 50%;
-            margin-bottom: 30px;
         }
 
         .timeline-item:nth-child(odd) {
@@ -151,35 +150,121 @@
         }
 
         .timeline-content {
-            padding: 20px 30px;
-            background-color: white;
+            padding: 20px;
+            background: #fff;
             position: relative;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 6px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
         }
 
         .timeline-content:hover {
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
             transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
         }
 
-        .timeline-item::after {
+        .timeline-content::before {
             content: '';
             position: absolute;
-            width: 20px;
-            height: 20px;
-            right: -10px;
-            background-color: white;
-            border: 3px solid #007bff;
-            top: 15px;
+            top: 22px;
+            width: 16px;
+            height: 16px;
+            background: #fff;
+            border: 3px solid #e0e0e0;
             border-radius: 50%;
-            z-index: 1;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        .timeline-item:nth-child(even)::after {
-            left: -10px;
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -50px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -50px;
+        }
+
+        .timeline-content .date {
+            position: absolute;
+            top: -30px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .timeline-item:nth-child(odd) .date {
+            right: 20px;
+        }
+
+        .timeline-item:nth-child(even) .date {
+            left: 20px;
+        }
+
+        .timeline-content h3 {
+            margin: 0 0 10px 0;
+            color: #333;
+            font-size: 20px;
+        }
+
+        .timeline-content p {
+            margin: 0;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #666;
+        }
+
+        @media (max-width: 767px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0%;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content::before,
+            .timeline-item:nth-child(even) .timeline-content::before {
+                left: -44px;
+                top: 15px;
+                width: 12px;
+                height: 12px;
+                border-width: 2px;
+            }
+            
+            .timeline-item:nth-child(odd) .date,
+            .timeline-item:nth-child(even) .date {
+                right: auto;
+                left: 0;
+                top: -25px;
+            }
+
+            .timeline-content {
+                margin-top: 35px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::after {
+                left: 15px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0%;
+            }
         }
 
         .card-title {
@@ -745,6 +830,339 @@
         .achievement-highlight {
             animation: highlight 1s ease;
         }
+
+        .modal-body {
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        .timeline-container {
+            padding: 20px 0;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background: #e0e0e0;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-content {
+            padding: 20px;
+            background: #fff;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 22px;
+            width: 16px;
+            height: 16px;
+            background: #fff;
+            border: 3px solid #e0e0e0;
+            border-radius: 50%;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -50px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -50px;
+        }
+
+        .timeline-content .date {
+            position: absolute;
+            top: -30px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .timeline-item:nth-child(odd) .date {
+            right: 20px;
+        }
+
+        .timeline-item:nth-child(even) .date {
+            left: 20px;
+        }
+
+        .timeline-content h3 {
+            margin: 0 0 10px 0;
+            color: #333;
+            font-size: 20px;
+        }
+
+        .timeline-content p {
+            margin: 0;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #666;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 40px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.5s ease-out, scaleIn 0.5s ease-out;
+        }
+
+        @media (max-width: 767px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0%;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content::before,
+            .timeline-item:nth-child(even) .timeline-content::before {
+                left: -44px;
+                top: 15px;
+                width: 12px;
+                height: 12px;
+                border-width: 2px;
+            }
+            
+            .timeline-item:nth-child(odd) .date,
+            .timeline-item:nth-child(even) .date {
+                right: auto;
+                left: 0;
+                top: -25px;
+            }
+
+            .timeline-content {
+                margin-top: 35px;
+            }
+        }
+
+        .modal-dialog.modal-xl {
+            max-width: 90vw;
+        }
+
+        .modal-content {
+            height: 90vh;
+        }
+
+        .modal-body {
+            max-height: calc(90vh - 60px);
+            overflow-y: auto;
+        }
+
+        .timeline-container {
+            padding: 20px 0;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 992px) {
+            .modal-dialog.modal-xl {
+                max-width: 95vw;
+            }
+
+            .modal-content {
+                height: 95vh;
+            }
+
+            .modal-body {
+                max-height: calc(95vh - 60px);
+            }
+        }
+
+        #journeyModal .timeline::after {
+          display: none;
+        }
+
+        #journeyModal .timeline-item::before,
+        #journeyModal .timeline-item::after,
+        #journeyModal .timeline-content::before,
+        #journeyModal .timeline-content::after {
+          display: none;
+        }
+
+        #journeyModal .timeline-item {
+          padding-left: 0;
+        }
+
+        #journeyModal .timeline-content {
+          margin-left: 0;
+        }
+
+        /* Modal-specific timeline styles */
+        #journeyModal .timeline {
+          position: relative;
+          max-width: 1000px;
+          margin: 0 auto;
+          padding: 40px 0;
+        }
+
+        #journeyModal .timeline::after {
+          content: '';
+          position: absolute;
+          width: 2px;
+          background: #e0e0e0;
+          top: 0;
+          bottom: 0;
+          left: 50%;
+          margin-left: -1px;
+        }
+
+        #journeyModal .timeline-item {
+          padding: 10px 40px;
+          position: relative;
+          background-color: inherit;
+          width: 50%;
+        }
+
+        #journeyModal .timeline-item:nth-child(odd) {
+          left: 0;
+        }
+
+        #journeyModal .timeline-item:nth-child(even) {
+          left: 50%;
+        }
+
+        #journeyModal .timeline-content {
+          padding: 20px;
+          background: #fff;
+          position: relative;
+          border-radius: 6px;
+          box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+          transition: all 0.3s ease;
+        }
+
+        #journeyModal .timeline-content:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        #journeyModal .timeline-content .date {
+          position: absolute;
+          top: -30px;
+          font-size: 14px;
+          font-weight: bold;
+          color: #333;
+        }
+
+        #journeyModal .timeline-item:nth-child(odd) .date {
+          right: 20px;
+        }
+
+        #journeyModal .timeline-item:nth-child(even) .date {
+          left: 20px;
+        }
+
+        #journeyModal .timeline-content h3 {
+          margin: 0 0 10px 0;
+          color: #333;
+          font-size: 20px;
+        }
+
+        #journeyModal .timeline-content p {
+          margin: 0;
+          font-size: 16px;
+          line-height: 1.5;
+          color: #666;
+        }
+
+        /* Remove any ::before or ::after pseudo-elements that might be creating circles or dots */
+        #journeyModal .timeline-content::before,
+        #journeyModal .timeline-content::after,
+        #journeyModal .timeline-item::before,
+        #journeyModal .timeline-item::after {
+          content: none;
+        }
+
+        @media (max-width: 767px) {
+          #journeyModal .timeline::after {
+            left: 31px;
+          }
+          
+          #journeyModal .timeline-item {
+            width: 100%;
+            padding-left: 70px;
+            padding-right: 25px;
+          }
+          
+          #journeyModal .timeline-item:nth-child(even) {
+            left: 0%;
+          }
+          
+          #journeyModal .timeline-item:nth-child(odd) .date,
+          #journeyModal .timeline-item:nth-child(even) .date {
+            right: auto;
+            left: 0;
+            top: -25px;
+          }
+
+          #journeyModal .timeline-content {
+            margin-top: 35px;
+          }
+        }
     </style>
 </head>
 <body>
@@ -761,6 +1179,7 @@
                     <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
                     <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" id="journeyLink">My Journey</a></li>
                 </ul>
             </div>
         </div>
@@ -1127,6 +1546,44 @@
         </svg>
     </div>
 
+    <div class="modal fade" id="journeyModal" tabindex="-1" aria-labelledby="journeyModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="journeyModalLabel">My Professional Journey</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="timeline-container">
+              <div class="timeline">
+                <div class="timeline-item">
+                  <div class="timeline-content">
+                    <div class="date">2023</div>
+                    <h3>Hackathon Victory</h3>
+                    <p>Won first place in the 2023 Hackathon, demonstrating exceptional problem-solving skills and teamwork.</p>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-content">
+                    <div class="date">2022</div>
+                    <h3>Research Publication</h3>
+                    <p>Published a groundbreaking research paper on AI ethics in a renowned journal, contributing to the field's advancement.</p>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-content">
+                    <div class="date">2021</div>
+                    <h3>Startup MVP Launch</h3>
+                    <p>Led a team of 5 in developing and successfully launching a startup MVP, gaining valuable entrepreneurial experience.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -1371,6 +1828,43 @@
                     item.classList.remove('achievement-highlight');
                 }, 1000);
             });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+          const journeyLink = document.getElementById('journeyLink');
+          const journeyModal = new bootstrap.Modal(document.getElementById('journeyModal'));
+
+          journeyLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            journeyModal.show();
+          });
+
+          document.getElementById('journeyModal').addEventListener('show.bs.modal', function () {
+            const timelineItems = this.querySelectorAll('.timeline-item');
+            timelineItems.forEach((item, index) => {
+              setTimeout(() => {
+                item.classList.add('fade-in-up');
+              }, index * 200);
+            });
+          });
+
+          document.getElementById('journeyModal').addEventListener('hidden.bs.modal', function () {
+            const timelineItems = this.querySelectorAll('.timeline-item');
+            timelineItems.forEach(item => {
+              item.classList.remove('fade-in-up');
+            });
+          });
+
+          // Add hover effect for timeline items
+          const timelineContents = document.querySelectorAll('.timeline-content');
+          timelineContents.forEach(content => {
+            content.addEventListener('mouseenter', () => {
+              content.style.transform = 'translateY(-5px) scale(1.03)';
+            });
+            content.addEventListener('mouseleave', () => {
+              content.style.transform = 'translateY(0) scale(1)';
+            });
+          });
         });
     </script>
 </body>
