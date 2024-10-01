@@ -40,7 +40,10 @@
         .navbar {
             background-color: rgba(255, 255, 255, 0.9);
         }
-
+.navbar-toggler:focus {
+    outline: none;
+    box-shadow: none;
+  }
         .hero {
             background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
             min-height: 100vh;
@@ -1936,6 +1939,24 @@
             content.addEventListener('mouseleave', () => {
               content.style.transform = 'translateY(0) scale(1)';
             });
+          });
+        });
+
+        // Get all the nav links
+        var navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+        
+        // Get the navbar toggler and collapse element
+        var navbarToggler = document.querySelector('.navbar-toggler');
+        var navbarCollapse = document.querySelector('.navbar-collapse');
+
+        // Add click event listener to each nav link
+        navLinks.forEach(function(link) {
+          link.addEventListener('click', function() {
+            // Check if the navbar is expanded (visible on mobile)
+            if (navbarCollapse.classList.contains('show')) {
+              // Programmatically click the toggler to close the navbar
+              navbarToggler.click();
+            }
           });
         });
     </script>
