@@ -1040,15 +1040,33 @@
           margin-left: 0;
         }
 
-        /* Modal-specific timeline styles */
-        #journeyModal .timeline {
+        /* Modal-specific styles */
+        #journeyModal .modal-content {
+          background-color: #f8f9fa; /* Light background color */
+          background-image: radial-gradient(#000 1px, transparent 1px);
+          background-size: 20px 20px; /* Adjust size of dots and spacing */
+          backdrop-filter: blur(5px); /* Optional: adds a slight blur effect */
+        }
+
+        #journeyModal .modal-header,
+        #journeyModal .modal-footer {
+          background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+          border: none;
+        }
+
+        #journeyModal .modal-body {
+          background-color: rgba(255, 255, 255, 0.6); /* More transparent white for the body */
+        }
+
+        /* Timeline styles */
+        .timeline {
           position: relative;
           max-width: 1000px;
           margin: 0 auto;
           padding: 40px 0;
         }
 
-        #journeyModal .timeline::after {
+        .timeline::after {
           content: '';
           position: absolute;
           width: 2px;
@@ -1059,22 +1077,22 @@
           margin-left: -1px;
         }
 
-        #journeyModal .timeline-item {
+        .timeline-item {
           padding: 10px 40px;
           position: relative;
           background-color: inherit;
           width: 50%;
         }
 
-        #journeyModal .timeline-item:nth-child(odd) {
+        .timeline-item:nth-child(odd) {
           left: 0;
         }
 
-        #journeyModal .timeline-item:nth-child(even) {
+        .timeline-item:nth-child(even) {
           left: 50%;
         }
 
-        #journeyModal .timeline-content {
+        .timeline-content {
           padding: 20px;
           background: #fff;
           position: relative;
@@ -1083,72 +1101,44 @@
           transition: all 0.3s ease;
         }
 
-        #journeyModal .timeline-content:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-        }
-
-        #journeyModal .timeline-content .date {
-          position: absolute;
-          top: -30px;
-          font-size: 14px;
-          font-weight: bold;
-          color: #333;
-        }
-
-        #journeyModal .timeline-item:nth-child(odd) .date {
-          right: 20px;
-        }
-
-        #journeyModal .timeline-item:nth-child(even) .date {
-          left: 20px;
-        }
-
-        #journeyModal .timeline-content h3 {
-          margin: 0 0 10px 0;
-          color: #333;
-          font-size: 20px;
-        }
-
-        #journeyModal .timeline-content p {
-          margin: 0;
-          font-size: 16px;
-          line-height: 1.5;
-          color: #666;
-        }
-
         /* Mobile view styles */
-        @media screen and (max-width: 768px) {
-          #journeyModal .timeline::after {
+        @media (max-width: 768px) {
+          .timeline::after {
             display: none;
           }
           
-          #journeyModal .timeline-item {
+          .timeline-item {
             width: 100%;
             padding-left: 0;
             padding-right: 0;
             left: 0 !important;
           }
           
-          #journeyModal .timeline-content {
+          .timeline-content {
             width: 100%;
             margin-left: 0;
             margin-right: 0;
           }
           
-          #journeyModal .timeline-content::before {
+          .timeline-content::before {
             display: none;
           }
           
-          #journeyModal .timeline-item:nth-child(odd) .timeline-content::before,
-          #journeyModal .timeline-item:nth-child(even) .timeline-content::before {
+          .timeline-item:nth-child(odd) .timeline-content::before,
+          .timeline-item:nth-child(even) .timeline-content::before {
             display: none;
           }
           
-          #journeyModal .timeline-item:nth-child(odd) .date,
-          #journeyModal .timeline-item:nth-child(even) .date {
+          .timeline-item:nth-child(odd) .date,
+          .timeline-item:nth-child(even) .date {
             position: static;
             margin-bottom: 10px;
+          }
+
+          /* Remove blue dots */
+          .timeline-item::before,
+          .timeline-item::after {
+            display: none;
           }
         }
 
