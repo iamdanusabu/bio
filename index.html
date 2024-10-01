@@ -211,59 +211,43 @@
             color: #666;
         }
 
-        @media (max-width: 767px) {
+        @media (max-width: 768px) {
             .timeline::after {
-                left: 31px;
+                display: none;
             }
             
             .timeline-item {
                 width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
+                padding-left: 0;
+                padding-right: 0;
+                left: 0 !important;
             }
             
-            .timeline-item:nth-child(even) {
-                left: 0%;
+            .timeline-content {
+                width: 100%;
+                margin-left: 0;
+                margin-right: 0;
+            }
+            
+            .timeline-content::before {
+                display: none;
             }
             
             .timeline-item:nth-child(odd) .timeline-content::before,
             .timeline-item:nth-child(even) .timeline-content::before {
-                left: -44px;
-                top: 15px;
-                width: 12px;
-                height: 12px;
-                border-width: 2px;
+                display: none;
             }
             
             .timeline-item:nth-child(odd) .date,
             .timeline-item:nth-child(even) .date {
-                right: auto;
-                left: 0;
-                top: -25px;
+                position: static;
+                margin-bottom: 10px;
             }
 
-            .timeline-content {
-                margin-top: 35px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .timeline::after {
-                left: 31px;
-            }
-            
-            .timeline-item {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
-            }
-            
+            /* Remove blue dots */
+            .timeline-item::before,
             .timeline-item::after {
-                left: 15px;
-            }
-            
-            .timeline-item:nth-child(even) {
-                left: 0%;
+                display: none;
             }
         }
 
@@ -960,39 +944,43 @@
             animation: fadeInUp 0.5s ease-out, scaleIn 0.5s ease-out;
         }
 
-        @media (max-width: 767px) {
+        @media (max-width: 768px) {
             .timeline::after {
-                left: 31px;
+                display: none;
             }
             
             .timeline-item {
                 width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
+                padding-left: 0;
+                padding-right: 0;
+                left: 0 !important;
             }
             
-            .timeline-item:nth-child(even) {
-                left: 0%;
+            .timeline-content {
+                width: 100%;
+                margin-left: 0;
+                margin-right: 0;
+            }
+            
+            .timeline-content::before {
+                display: none;
             }
             
             .timeline-item:nth-child(odd) .timeline-content::before,
             .timeline-item:nth-child(even) .timeline-content::before {
-                left: -44px;
-                top: 15px;
-                width: 12px;
-                height: 12px;
-                border-width: 2px;
+                display: none;
             }
             
             .timeline-item:nth-child(odd) .date,
             .timeline-item:nth-child(even) .date {
-                right: auto;
-                left: 0;
-                top: -25px;
+                position: static;
+                margin-bottom: 10px;
             }
 
-            .timeline-content {
-                margin-top: 35px;
+            /* Remove blue dots */
+            .timeline-item::before,
+            .timeline-item::after {
+                display: none;
             }
         }
 
@@ -1129,38 +1117,132 @@
           color: #666;
         }
 
-        /* Remove any ::before or ::after pseudo-elements that might be creating circles or dots */
-        #journeyModal .timeline-content::before,
-        #journeyModal .timeline-content::after,
-        #journeyModal .timeline-item::before,
-        #journeyModal .timeline-item::after {
-          content: none;
-        }
-
-        @media (max-width: 767px) {
+        /* Mobile view styles */
+        @media screen and (max-width: 768px) {
           #journeyModal .timeline::after {
-            left: 31px;
+            display: none;
           }
           
           #journeyModal .timeline-item {
             width: 100%;
-            padding-left: 70px;
-            padding-right: 25px;
+            padding-left: 0;
+            padding-right: 0;
+            left: 0 !important;
           }
           
-          #journeyModal .timeline-item:nth-child(even) {
-            left: 0%;
+          #journeyModal .timeline-content {
+            width: 100%;
+            margin-left: 0;
+            margin-right: 0;
+          }
+          
+          #journeyModal .timeline-content::before {
+            display: none;
+          }
+          
+          #journeyModal .timeline-item:nth-child(odd) .timeline-content::before,
+          #journeyModal .timeline-item:nth-child(even) .timeline-content::before {
+            display: none;
           }
           
           #journeyModal .timeline-item:nth-child(odd) .date,
           #journeyModal .timeline-item:nth-child(even) .date {
-            right: auto;
-            left: 0;
-            top: -25px;
+            position: static;
+            margin-bottom: 10px;
           }
+        }
 
-          #journeyModal .timeline-content {
-            margin-top: 35px;
+        /* Experience timeline styles */
+        .experience-timeline {
+          position: relative;
+          max-width: 1000px;
+          margin: 0 auto;
+          padding: 40px 0;
+        }
+
+        .experience-timeline::after {
+          content: '';
+          position: absolute;
+          width: 2px;
+          background: #e0e0e0;
+          top: 0;
+          bottom: 0;
+          left: 50%;
+          margin-left: -1px;
+        }
+
+        .experience-timeline .timeline-item {
+          padding: 10px 40px;
+          position: relative;
+          background-color: inherit;
+          width: 50%;
+        }
+
+        .experience-timeline .timeline-item:nth-child(odd) {
+          left: 0;
+        }
+
+        .experience-timeline .timeline-item:nth-child(even) {
+          left: 50%;
+        }
+
+        .experience-timeline .timeline-content {
+          padding: 20px;
+          background: #fff;
+          position: relative;
+          border-radius: 6px;
+          box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+          transition: all 0.3s ease;
+        }
+
+        .experience-timeline .timeline-content:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .experience-timeline .timeline-content::before {
+          content: '';
+          position: absolute;
+          top: 22px;
+          width: 16px;
+          height: 16px;
+          background: #fff;
+          border: 3px solid #e0e0e0;
+          border-radius: 50%;
+        }
+
+        .experience-timeline .timeline-item:nth-child(odd) .timeline-content::before {
+          right: -50px;
+        }
+
+        .experience-timeline .timeline-item:nth-child(even) .timeline-content::before {
+          left: -50px;
+        }
+
+        /* Mobile view styles */
+        @media screen and (max-width: 768px) {
+          .experience-timeline::after {
+            display: none;
+          }
+          
+          .experience-timeline .timeline-item {
+            width: 100%;
+            padding: 0;
+            margin-bottom: 30px;
+            left: 0 !important;
+          }
+          
+          .experience-timeline .timeline-content {
+            width: 100%;
+            margin: 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+          }
+          
+          .experience-timeline .timeline-item::before,
+          .experience-timeline .timeline-item::after,
+          .experience-timeline .timeline-content::before,
+          .experience-timeline .timeline-content::after {
+            display: none;
           }
         }
     </style>
